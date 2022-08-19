@@ -29,18 +29,15 @@ public class LongestPalindrome {
         int start = 0;
         int end = 0;
         int maxLen = 0;
-        if (s == null || s.length() < 2) {
-            return s;
-        }
-        for (int i = 1; i < s.length(); i++) {
-            for (int j = 0; j < i; j++) {
-                if (s.charAt(i) == s.charAt(j) && (i - j < 3 || dp[i-1][j+1])) {
-                    dp[i][j] = true;
+        for (int i = 0; i < s.length(); i++) {
+            for(int j = 0; j < i; j++) {
+                if (s.charAt(i) == s.charAt(j) && (i - j < 3 || dp[j+1][i-1])) {
+                    dp[j][i] = true;
                     int len = i - j + 1;
                     if (maxLen < len) {
+                        maxLen = len;
                         start = j;
                         end = i;
-                        maxLen = len;
                     }
                 }
             }
@@ -49,7 +46,7 @@ public class LongestPalindrome {
     }
 
     public static void main(String[] args) {
-        String s = "ccc";
+        String s = "cccaacc";
         System.out.println(longestPalindrome(s));
     }
 }
