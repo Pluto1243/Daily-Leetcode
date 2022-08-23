@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,26 +32,27 @@ import java.util.List;
  **/
 public class Permutations {
     public static List<List<Integer>> permute(int[] nums) {
-
         List<List<Integer>> res = new ArrayList<>();
-        int[] visited = new int[nums.length];
-        backtrack(res, nums, new ArrayList<Integer>(), visited);
+        boolean[] visited = new boolean[nums.length];
+        List temp = new ArrayList<>(nums.length);
+        backtrack(res, nums, visited, temp);
         return res;
-
     }
 
-    private static void backtrack(List<List<Integer>> res, int[] nums, ArrayList<Integer> tmp, int[] visited) {
-        if (tmp.size() == nums.length) {
-            res.add(new ArrayList<>(tmp));
+    private static void backtrack(List<List<Integer>> res, int[] nums, boolean[] visited, List<Integer> temp) {
+        if (temp.size() == nums.length) {
+            res.add(new ArrayList<>(temp));
             return;
         }
         for (int i = 0; i < nums.length; i++) {
-            if (visited[i] == 1) continue;
-            visited[i] = 1;
-            tmp.add(nums[i]);
-            backtrack(res, nums, tmp, visited);
-            visited[i] = 0;
-            tmp.remove(tmp.size() - 1);
+            if (visited[i] == true) {
+                continue;
+            }
+            visited[i] = true;
+            temp.add(nums[i]);
+            backtrack(res, nums, visited, temp);
+            visited[i] = false;
+            temp.remove(temp.size() - 1);
         }
     }
 
