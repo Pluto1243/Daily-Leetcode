@@ -58,7 +58,6 @@ public class ReverseBetween {
             leftNode = newHead.next;
         }
         int index = 1;
-        // 1 -> 2 -> 3
         while (node.next != null) {
             // 左值
             if (leftNode == null && node.next != null && left == index) {
