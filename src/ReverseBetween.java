@@ -85,10 +85,10 @@ public class ReverseBetween {
     private static ListNode reverse(ListNode node) {
         ListNode newHead = null;
         while (node != null) {
-            ListNode temp = node.next;
+            ListNode next = node.next;
             node.next = newHead;
             newHead = node;
-            node = temp;
+            node = next;
         }
         return newHead;
     }
