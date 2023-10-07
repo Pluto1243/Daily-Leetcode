@@ -49,26 +49,22 @@ public class RightSideView {
         }
     }
 
-    public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        if (root != null) {
-            list.add(root.val);
-            if (root.left != null) {
-                recursion(list, root.left, 1);
-            }
-            if (root.right != null) {
-                recursion(list, root.right, 1);
-            }
+    public static List<Integer> rightSideView(TreeNode root) {
+        List<Integer> list =  new ArrayList<>();
+        if (root == null) {
+            return list;
         }
+        recursion(list, root, 0);
         return list;
     }
 
-    public void recursion(List<Integer> list, TreeNode root, int index) {
+    public static void recursion(List<Integer> list, TreeNode root, int index) {
         if (list.size() == index) {
             list.add(root.val);
+        } else {
+            list.set(index, root.val);
         }
-        list.set(index, root.val);
-        ++index;
+        index++;
         if (root.left != null) {
             recursion(list, root.left, index);
         }
